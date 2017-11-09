@@ -4,7 +4,7 @@ require 'digest'
 module Structure
     class Structure
         class << self
-            attr_accessor :attrs, :structs
+            attr_accessor :attrs
 
             def [](*keys)
                 new(*keys)
