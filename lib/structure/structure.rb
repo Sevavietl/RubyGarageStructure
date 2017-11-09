@@ -4,10 +4,16 @@ require 'digest'
 module Structure
     class Structure
         class << self
-            attr_accessor :attrs
+            attr_accessor :attrs, :structs
+
+            def [](*keys)
+                new(*keys)
+            end
         end
         
         def initialize(*args)
+            raise ArgumentError if args.length > length
+            
             members.zip(args) { |attr, value| self[attr] = value }
         end
 

@@ -31,6 +31,18 @@ class TestStructure < Test::Unit::TestCase
         assert_equal('pong', Structure::Struct.new.ping)
     end
 
+    def test_instantiation_with_more_arguments_throws_error
+        assert_raise ArgumentError do
+            @customer.new('Joe Smith', '123 Maple, Anytown NC', 12345, 'extra param')
+        end
+    end
+
+    def test_array_access_instantiation_structure_class
+        Structure.new('Customer', :name, :address)
+        dave = Structure::Customer['Dave']
+        assert_equal('#<struct Customer name="Dave", address=nil>', dave.inspect)
+    end
+
     def test_equality
         joejr = @customer.new('Joe Smith', '123 Maple, Anytown NC', 12345)
         jane = @customer.new('Jane Doe', '456 Elm, Anytown NC', 12345)
